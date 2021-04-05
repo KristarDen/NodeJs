@@ -1,8 +1,9 @@
-module.exports = class Article{
-    constructor(title, text){
+export default class Article{
+    constructor(title, text, image){
         this._title = title;
         this._text = text;
         this._date = new Date();
+        this._image = image;
     }
 
     get title(){
@@ -15,5 +16,8 @@ module.exports = class Article{
 
     get date(){
         return this._date;
+    }
+    get image(){
+        return this._image;
     }
 }

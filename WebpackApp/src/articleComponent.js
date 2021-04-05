@@ -1,4 +1,4 @@
-export default  class ArticleComponent{
+export default class ArticleComponent{
     constructor(article){
         this._article = article;
     }
@@ -13,10 +13,14 @@ export default  class ArticleComponent{
         let date = document.createElement("time");
         date.innerHTML = this._article.date.toDateString();
 
+        let image = document.createElement("img");
+        image.src = this._article.image;
+
         let article = document.createElement("article");
         article.appendChild(header);
         article.appendChild(content);
         article.appendChild(date);
+        article.appendChild(image);
 
         return article;
     }
