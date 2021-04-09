@@ -121,6 +121,7 @@ class FooterComponent extends Component{
         self.style.width = "100%";
     }
 }
+
 class MainComponent {
     ContentBlock = null;
 
