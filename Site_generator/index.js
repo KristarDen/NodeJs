@@ -1,8 +1,5 @@
 class Component{
     self = "";
-    constructor(){
-        self = "";
-    }
     addSelf(elem){
         elem.appendChild(self);
     }
