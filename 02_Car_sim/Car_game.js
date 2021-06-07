@@ -6,27 +6,43 @@ class Car extends EventEmitter {
     is_broke = false;
     Name = "";
 
-    constructor(Car_Name){
+    constructor(Car_Name, Max_speed){
         super();
         this.Name = Car_Name;
+        this.max_speed = Max_speed;
     }
 
     Move(){
         
-        if(this.is_broke != false){
+        if(this.is_broke == false){
 
             if(this.current_speed > this.max_speed){
 
+                
                 console.log(`The car ${this.Name} broke down !`);
-                this.emit('event');
+                this.is_broke = true;
 
+                let trig = getRandomInt(2);
+
+                if(trig > 0){
+                    this.emit('engineer1');
+                }
+                
+                else{
+                    this.emit('engineer2');
+                }
+                
+
+            } 
+
+            else{
+                
+                this.current_speed += getRandomInt(10);
+                console.log(this.Name,` : `, this.current_speed ,`km/h`);
             }
         }
 
-        else{
-            this.current_speed += getRandomInt(10);
-            console.log(`${this.Name} : ${this.current_speed} km/h`)
-        }
+       
        
     }
 }
@@ -56,13 +72,18 @@ function getRandomInt(max) {
 
 console.log("GAME started");
 
-Car1 = new Car("Ford");
-Engineer1 = new Engineer("Vasian");
+Car1 = new Car("Ford", 125);
+engineer1 = new Engineer("Vasian");
+engineer2 = new Engineer("Kolian");
 
-Car1.on('event', ()=>Engineer1.repare(Car1));
+Car1.on('engineer1', ()=>engineer1.repare(Car1));
+Car1.on('engineer2', ()=>engineer2.repare(Car1));
 
-let intervalId = setInterval(Car1.Move, 1000);
+let intervalId = setInterval(Move_Car1, 1000);
 
+function Move_Car1(){
+    Car1.Move();
+}
 
 
 
