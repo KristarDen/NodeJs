@@ -13,11 +13,11 @@ class Car extends EventEmitter {
 
     Move(){
         
-        if(this.is_broke == false){
+        if(this.is_broke != false){
 
             if(this.current_speed > this.max_speed){
 
-                console.log(`\x1b[41m`,`The car ${this.Name} broke down !`);
+                console.log(`The car ${this.Name} broke down !`);
                 this.emit('event');
 
             }
@@ -54,15 +54,16 @@ function getRandomInt(max) {
 }
 
 
+console.log("GAME started");
 
 Car1 = new Car("Ford");
 Engineer1 = new Engineer("Vasian");
 
-Car1.on('event', Engineer1.repare(Car1));
+Car1.on('event', ()=>Engineer1.repare(Car1));
 
-let intervalId = setInterval(Car1.Move(), 1000);
+let intervalId = setInterval(Car1.Move, 1000);
 
-while(true){}
+
 
 
 
